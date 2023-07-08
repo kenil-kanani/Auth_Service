@@ -8,14 +8,14 @@ const db = require('./models/index');
 
 const app = express();
 
-const prepareAndStartServer = () => {
+const prepareAndStartServer = () => { 
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.use('/api', apiRoutes);
 
-    app.listen(PORT, () => {
+    app.listen(PORT, async () => {
         console.log(`Server started on PORT: ${PORT}`);
         if (process.env.DB_SYNC) {
             db.sequelize.sync({ alert: true })
